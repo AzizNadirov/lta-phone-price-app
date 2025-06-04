@@ -10,21 +10,23 @@ This application allows users to:
 5. Visualize price distributions for the phone model
 
 Usage:
+```bash
+    export PYTHONPATH=$(pwd)
     streamlit run src/phoner.py
+```
 """
 import streamlit as st
 import pandas as pd
 import altair as alt
 from loguru import logger
-import matplotlib.pyplot as plt
-from typing import Dict, Any, List, Tuple
+from typing import Dict, Any
 
 # Import our custom modules
 from src.handlers import PhonerHandler
 from src.schemas import PhoneSchema
 
 # Configure logger
-logger.add("logs/phoner_app.log", rotation="100 MB", retention="30 days")
+logger.add("logs/phoner_app.log", mode='w')
 
 # App configuration
 st.set_page_config(
@@ -71,7 +73,7 @@ def display_phone_specs(phone_data: Dict[str, Any]) -> None:
         st.markdown(f"**Brand:** {phone_data.get('brand', 'N/A')}")
         st.markdown(f"**Model:** {phone_data.get('model', 'N/A')}")
         st.markdown(f"**OS:** {phone_data.get('OS', 'N/A')}")
-        st.markdown(f"**Source Price:** ${phone_data.get('price', 'N/A')}")
+        st.markdown(f"**Source Price:** ₼{phone_data.get('price', 'N/A')}")
     
     with col2:
         st.subheader("Key Specifications")
@@ -131,13 +133,13 @@ def display_price_comparison(actual_price: float, predicted_price: float) -> Non
     # Create metrics for price comparison
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.metric("Source Price", f"${actual_price:.2f}")
+        st.metric("Source Price", f"₼{actual_price:.2f}")
     with col2:
-        st.metric("Predicted Price", f"${predicted_price:.2f}")
+        st.metric("Predicted Price", f"₼{predicted_price:.2f}")
     with col3:
         st.metric(
             "Difference", 
-            f"${abs(diff):.2f}", 
+            f"₼{abs(diff):.2f}", 
             f"{diff_percentage:.1f}%" if diff > 0 else f"{diff_percentage:.1f}%",
             delta_color="inverse"
         )
@@ -282,30 +284,6 @@ def save_to_history(phone_data: Dict[str, Any], predicted_price: float) -> None:
                for entry in st.session_state.history):
         st.session_state.history.append(history_entry)
 
-def show_history() -> None:
-    """Display the history of analyzed phones"""
-    if "history" in st.session_state and st.session_state.history:
-        st.subheader("Analysis History")
-        
-        # Create a DataFrame from history
-        history_df = pd.DataFrame(st.session_state.history)
-        
-        # Add a difference column
-        history_df["diff_percentage"] = ((history_df["predicted_price"] - history_df["actual_price"]) / 
-                                        history_df["actual_price"] * 100).round(2)
-        
-        # Format for display
-        display_df = history_df.copy()
-        display_df["actual_price"] = display_df["actual_price"].apply(lambda x: f"${x:.2f}")
-        display_df["predicted_price"] = display_df["predicted_price"].apply(lambda x: f"${x:.2f}")
-        display_df["diff_percentage"] = display_df["diff_percentage"].apply(lambda x: f"{x}%")
-        
-        st.dataframe(display_df)
-        
-        # Add a clear history button
-        if st.button("Clear History", key="clear_history_button", type="secondary"):
-            st.session_state.history = []
-            st.experimental_rerun()
 
 def main() -> None:
     """Main function to run the Streamlit application"""
@@ -337,41 +315,6 @@ def main() -> None:
         
         # Add some spacing
         st.markdown("---")
-        
-        # Show the history in the sidebar
-        show_history()
-    
-    # Sidebar with information
-    with st.sidebar:
-        st.header("About")
-        st.markdown("""
-        ### How it works
-        
-        This app uses machine learning to predict phone prices based on specifications:
-        
-        1. **Data Collection**: The model is trained on a dataset of phone specifications and their prices
-        2. **Feature Engineering**: Important features like RAM, storage, camera quality, etc. are extracted
-        3. **Prediction**: A regression model predicts the price based on the phone's specifications
-        4. **Comparison**: The predicted price is compared with the actual price from the source
-        
-        The model is periodically retrained with new data to keep predictions accurate.
-        """)
-        
-        # Allow manual model retraining
-        if st.button("Retrain ML Model", help="Manually trigger retraining of the ML model"):
-            with st.spinner("Retraining model... This may take a while"):
-                try:
-                    handler.ml.train()
-                    st.success("✅ Model retrained successfully!")
-                except Exception as e:
-                    st.error(f"❌ Training failed: {str(e)}")
-                    logger.exception("Model retraining failed")
-        
-        # Add some spacing
-        st.markdown("---")
-        
-        # Show the history in the sidebar
-        show_history()
     
     # URL input section
     st.header("Enter Phone Product URL")
@@ -460,7 +403,7 @@ def main() -> None:
         - `https://kontakt.az/honor-400-lite-8-256-gb-grey`
         - `https://mgstore.az/oppo-a3x-4-128-gb-ocean-blue`
         - `https://www.amazon.com/dp/B0CHX1W1XY` (Amazon - iPhone 15)
-        - `https://www.bestbuy.com/site/samsung-galaxy-s23-128gb-unlocked-phantom-black/6529758.p` (Best Buy)
+        - `https://umico.az/product/958343`
         
         Note: The crawler works best with product pages that have clear specifications sections.
         """)
