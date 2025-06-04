@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d7ed0cbc-66f5-466a-823b-3cbbe6e4d343" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/0 etl.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/0 etl.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/2 ml.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/2 ml.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/phone-price.parquet" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/phone_specs.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/phone_specs.parquet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/play.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/play.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/phone-price.parquet" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/phone-price.parquet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parsing/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parsing/md.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2y3QSprUsjMIy5k8bRVddvd2eNg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-PY-251.25410.159" />
+        <option value="bundled-python-sdk-e0ed3721d81e-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.25410.159" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d7ed0cbc-66f5-466a-823b-3cbbe6e4d343" name="Changes" comment="" />
+      <created>1749060780442</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1749060780442</updated>
+      <workItem from="1749060782041" duration="56000" />
+    </task>
+    <servers />
+  </component>
+</project>
