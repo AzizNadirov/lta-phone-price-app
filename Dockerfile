@@ -38,11 +38,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install UV package manager
 RUN pip install uv
 
-# Copy requirements file
-COPY requirements.txt .
 
 # Install Python dependencies with UV
-RUN uv pip install -r requirements.txt
+RUN uv sync
 
 # Install Playwright browsers
 RUN playwright install
