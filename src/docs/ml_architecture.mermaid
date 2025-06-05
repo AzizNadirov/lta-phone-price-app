@@ -1,0 +1,29 @@
+graph TD
+    A[Raw Phone Data] --> B[Data Preprocessing]
+    B --> C{Price Segmentation}
+    C -->|Budget Phones| D[Budget Phone Model]
+    C -->|Mid-range Phones| E[Mid-range Phone Model]
+    C -->|Premium Phones| F[Premium Phone Model]
+    
+    D --> G[Model Selection & Training]
+    E --> G
+    F --> G
+    
+    G --> H[Model Evaluation]
+    H --> I[Save Models]
+    
+    J[New Phone Specs] --> K[Feature Extraction]
+    K --> L[Determine Price Segment]
+    L --> M{Select Appropriate Model}
+    M -->|Budget| N[Budget Price Prediction]
+    M -->|Mid-range| O[Mid-range Price Prediction]
+    M -->|Premium| P[Premium Price Prediction]
+    
+    N --> Q[Final Price Prediction]
+    O --> Q
+    P --> Q
+    
+    style A fill:#d6eaf8,stroke:#333
+    style J fill:#d6eaf8,stroke:#333
+    style G fill:#d5f5e3,stroke:#333
+    style Q fill:#f9d5e5,stroke:#333

@@ -287,7 +287,6 @@ class PhonePricePredictor:
     def save_models(self, prefix="phone_price_model"):
         """Save trained models to disk"""
         logger.info(f"Saving models with prefix '{prefix}' to directory '{self.model_dir}'.")
-        # Create model info file
         model_info = {
             "features": self.features,
             "feature_defaults": self.feature_defaults,
@@ -297,7 +296,6 @@ class PhonePricePredictor:
         joblib.dump(model_info, model_info_path)
         logger.info(f"Saved model_info.pkl to {model_info_path}")
         
-        # Save each model
         for segment_name, model_data in self.models.items():
             model_path = os.path.join(self.model_dir, f"{prefix}_{segment_name}.pkl")
             joblib.dump(model_data, model_path)
@@ -382,7 +380,7 @@ class PhonePricePredictor:
             specs_df = pd.DataFrame([specs])[self.final_features]
         except KeyError as e:
             logger.error(f"Missing expected feature in input specs for DataFrame creation: {e}. Specs: {specs}, Expected: {self.final_features}")
-            return None
+            return None 
 
         # Get predictions from all models
         predictions = {}

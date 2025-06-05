@@ -1,0 +1,60 @@
+flowchart TB
+    subgraph User["User Interface"]
+        A[Web Browser] --> B[Streamlit App\nsrc/phoner.py]
+    end
+
+    subgraph Core["Core Service Layer"]
+        C[Service Handlers\nsrc/handlers.py] 
+        D[Phone Schema\nsrc/schemas.py]
+    end
+
+    subgraph ML["Machine Learning Pipeline"]
+        E[Dataset Operations\nsrc/ml/_dataset.py]
+        F[ML Models\nsrc/ml/_ml.py]
+        G[Statistical Analysis\nsrc/ml/_stats.py]
+        H[(Trained Models\n/ml/models/*.pkl)]
+    end
+
+    subgraph Data["Data Acquisition"]
+        I[Web Crawler\nsrc/parsing/_parsers.py]
+        J[(Phone Data\nsrc/data/phone-price.parquet)]
+    end
+
+    subgraph LLM["Language Model Layer"]
+        K[LLM Models\nsrc/llm/models.py]
+        L[Prompts\nsrc/llm/prompts.py]
+        M[LLM Utilities\nsrc/llm/utils.py]
+    end
+
+    subgraph Config["Configuration"]
+        N[App Config\nsrc/config.py]
+    end
+
+    %% Connections
+    B --> C
+    C --> D
+    C --> I
+    C --> F
+    F --> E
+    F --> G
+    F --> H
+    E --> J
+    I -.-> LLM
+    N -.-> C
+    N -.-> ML
+    N -.-> LLM
+
+    %% Styles
+    classDef userInterface fill:#f9d5e5,stroke:#333,stroke-width:1px
+    classDef core fill:#eeeeee,stroke:#333,stroke-width:1px
+    classDef ml fill:#d5f5e3,stroke:#333,stroke-width:1px
+    classDef data fill:#d6eaf8,stroke:#333,stroke-width:1px
+    classDef llm fill:#fdebd0,stroke:#333,stroke-width:1px
+    classDef config fill:#e8daef,stroke:#333,stroke-width:1px
+
+    class A,B userInterface
+    class C,D core
+    class E,F,G,H ml
+    class I,J data
+    class K,L,M llm
+    class N config

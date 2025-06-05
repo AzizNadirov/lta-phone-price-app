@@ -7,7 +7,7 @@ __pycache__/
 *.so
 .vscode
 logs/
-Notebooks/*
+Notebooks/
 
 # Distribution / packaging
 .Python
