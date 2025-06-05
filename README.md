@@ -1,4 +1,4 @@
-# 📱 Phone Price Predictor
+# 📱 Phone Price Predictor - educational pet project for you
 
 **Is that phone really worth its price tag?** This app helps you find out!
 
